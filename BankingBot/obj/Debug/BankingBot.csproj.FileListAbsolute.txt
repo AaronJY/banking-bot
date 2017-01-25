@@ -1,0 +1,9 @@
+C:\src\aaron\BankingBot\BankingBot\bin\Debug\BankingBot.dll
+C:\src\aaron\BankingBot\BankingBot\bin\Debug\BankingBot.pdb
+C:\src\aaron\BankingBot\BankingBot\bin\Debug\Ninject.dll
+C:\src\aaron\BankingBot\BankingBot\bin\Debug\Ninject.xml
+C:\src\aaron\BankingBot\BankingBot\obj\Debug\BankingBot.dll
+C:\src\aaron\BankingBot\BankingBot\obj\Debug\BankingBot.pdb
+C:\src\aaron\BankingBot\BankingBot\obj\Debug\BankingBot.csprojResolveAssemblyReference.cache
+C:\src\aaron\BankingBot\BankingBot\bin\Debug\WebDriver.dll
+C:\src\aaron\BankingBot\BankingBot\bin\Debug\WebDriver.xml
