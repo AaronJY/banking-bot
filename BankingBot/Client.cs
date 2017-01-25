@@ -7,6 +7,7 @@ using BankingBot.Contracts;
 using BankingBot.ActionManagers.LoginManagers;
 using BankingBot.Models;
 using OpenQA.Selenium;
+using BankingBot.ActionManagers.AccountManagers;
 
 namespace BankingBot
 {
@@ -15,6 +16,8 @@ namespace BankingBot
     {
         #region Dependencies
         private readonly ILoginManager _loginManager;
+        private readonly IAccountManager _accountManager;
+
         protected readonly IBrowserBot BrowserBot;
         #endregion
 
@@ -28,10 +31,12 @@ namespace BankingBot
         public Client()
         {
             BrowserBot = new BrowserBot<T>();
+
             _loginManager = new LoginManager(BrowserBot);
+            _accountManager = new AccountManager(BrowserBot);
         }
 
-        #region Actions
+        #region Actions - Login Manager
 
         public void Login(ILoginCredentials credentials)
         {
@@ -40,14 +45,18 @@ namespace BankingBot
             LoginCredentials = credentials;
         }
 
+        #endregion
+
         public decimal GetBalance()
         {
             throw new NotImplementedException();
         }
 
+        #region Actions - Account Manager
+
         public IEnumerable<Account> GetAccounts()
         {
-            throw new NotImplementedException();
+            return _accountManager.GetAccounts();
         }
 
         #endregion

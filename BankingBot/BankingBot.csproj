@@ -51,6 +51,7 @@
     <Compile Include="Attributes\ProviderIdentifier.cs" />
     <Compile Include="BrowserBot.cs" />
     <Compile Include="Client.cs" />
+    <Compile Include="Contracts\IAccountManager.cs" />
     <Compile Include="Contracts\IBrowserBot.cs" />
     <Compile Include="Contracts\IClient.cs" />
     <Compile Include="Contracts\ILoginCredentials.cs" />
