@@ -4,3 +4,7 @@ Client/ProviderLoginDetails\.xml
 \.vs/BankingBot/v14/\.suo
 
 Client/obj/Debug/DesignTimeResolveAssemblyReferencesInput\.cache
+
+Client/bin/
+
+BankingBot/bin/
