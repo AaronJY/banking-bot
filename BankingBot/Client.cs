@@ -20,6 +20,11 @@ namespace BankingBot
 
         public ILoginCredentials LoginCredentials { get; private set; }
 
+        public bool IsLoggedIn
+        {
+            get { return LoginCredentials != null; }
+        }
+
         public Client()
         {
             BrowserBot = new BrowserBot<T>();
@@ -30,9 +35,9 @@ namespace BankingBot
 
         public void Login(ILoginCredentials credentials)
         {
-            LoginCredentials = credentials;
-
             _loginManager.Login(credentials);
+
+            LoginCredentials = credentials;
         }
 
         public decimal GetBalance()

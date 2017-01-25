@@ -7,3 +7,10 @@ C:\src\aaron\BankingBot\BankingBot\obj\Debug\BankingBot.pdb
 C:\src\aaron\BankingBot\BankingBot\obj\Debug\BankingBot.csprojResolveAssemblyReference.cache
 C:\src\aaron\BankingBot\BankingBot\bin\Debug\WebDriver.dll
 C:\src\aaron\BankingBot\BankingBot\bin\Debug\WebDriver.xml
+C:\Working Files\banking-bot\BankingBot\bin\Debug\BankingBot.dll
+C:\Working Files\banking-bot\BankingBot\bin\Debug\BankingBot.pdb
+C:\Working Files\banking-bot\BankingBot\bin\Debug\WebDriver.dll
+C:\Working Files\banking-bot\BankingBot\bin\Debug\WebDriver.xml
+C:\Working Files\banking-bot\BankingBot\obj\Debug\BankingBot.csprojResolveAssemblyReference.cache
+C:\Working Files\banking-bot\BankingBot\obj\Debug\BankingBot.dll
+C:\Working Files\banking-bot\BankingBot\obj\Debug\BankingBot.pdb
