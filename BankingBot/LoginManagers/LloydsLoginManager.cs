@@ -11,7 +11,7 @@ namespace BankingBot.LoginManagers
     {
         //private LloydsLoginCredentials _credentials;
         private readonly IBrowserBot _browserBot;
-
+        
         public LloydsLoginManager(IBrowserBot browserBot)
         {
             _browserBot = browserBot;
@@ -19,8 +19,15 @@ namespace BankingBot.LoginManagers
 
         public void Login(ILoginCredentials credentials)
         {
+            var lloydsCreds = (LloydsLoginCredentials)credentials;
+
             _browserBot.WebDriver.Url = "https://online.lloydsbank.co.uk/personal/logon/login.jsp";
             _browserBot.WebDriver.Navigate();
+
+            _browserBot.WebDriver.FindElement(By.Id("frmLogin:strCustomerLogin_userID")).SendKeys(lloydsCreds.Username);
+            _browserBot.WebDriver.FindElement(By.Id("frmLogin:strCustomerLogin_pwd")).SendKeys(lloydsCreds.Password);
+
+            _browserBot.WebDriver.FindElement(By.Id("frmLogin:btnLogin2")).Click();
         }
     }
 }
