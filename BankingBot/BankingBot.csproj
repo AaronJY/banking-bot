@@ -63,6 +63,7 @@
     <Compile Include="LoginCredentials\LoginCredentials.cs" />
     <Compile Include="LoginManagers\LloydsLoginManager.cs" />
     <Compile Include="LoginManagers\LoginManager.cs" />
+    <Compile Include="Models\Account.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Responses\LoginResponse.cs" />
   </ItemGroup>
