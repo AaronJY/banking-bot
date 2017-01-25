@@ -30,12 +30,12 @@ namespace BankingBot.ActionManagers.LoginManagers
 
             LoginStep1(lloydsCreds);
 
-            if (_browserBot.WebDriver.Url != Urls.MemorableInfo)
+            if (!_browserBot.WebDriver.Url.Contains(Urls.MemorableInfo))
                 throw new Exception("An error occured");
 
             LoginStep2(lloydsCreds);
 
-            if (_browserBot.WebDriver.Url != Urls.AccountOverview)
+            if (!_browserBot.WebDriver.Url.Contains(Urls.AccountOverview))
                 throw new Exception("An error occured");
         }
 
