@@ -4,6 +4,8 @@ using BankingBot.Attributes;
 using BankingBot.Contracts;
 using BankingBot.LoginCredentials;
 using OpenQA.Selenium;
+using BankingBot.Responses;
+using BankingBot.Enums;
 
 namespace BankingBot.ActionManagers.LoginManagers
 {
@@ -24,19 +26,32 @@ namespace BankingBot.ActionManagers.LoginManagers
             _browserBot = browserBot;
         }
 
-        public void Login(ILoginCredentials credentials)
+        public Response Login(ILoginCredentials credentials)
         {
+            var response = new Response();
             var lloydsCreds = (LloydsLoginCredentials)credentials;
 
-            LoginStep1(lloydsCreds);
+            try
+            {
+                LoginStep1(lloydsCreds);
 
-            if (!_browserBot.WebDriver.Url.Contains(Urls.MemorableInfo))
-                throw new Exception("An error occured");
+                if (!_browserBot.WebDriver.Url.Contains(Urls.MemorableInfo))
+                    throw new InvalidOperationException("Invalid login credentials");
 
-            LoginStep2(lloydsCreds);
+                LoginStep2(lloydsCreds);
 
-            if (!_browserBot.WebDriver.Url.Contains(Urls.AccountOverview))
-                throw new Exception("An error occured");
+                if (!_browserBot.WebDriver.Url.Contains(Urls.AccountOverview))
+                    throw new InvalidOperationException("Invalid passphrase for account");
+
+                response.Status = ResponseStatus.Success;
+            }
+            catch (Exception ex)
+            {
+                response.Exception = ex;
+                response.Status = ResponseStatus.Error;
+            }
+
+            return response;
         }
 
         private void LoginStep1(LloydsLoginCredentials credentials)

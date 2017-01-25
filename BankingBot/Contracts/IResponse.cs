@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BankingBot.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,8 @@ namespace BankingBot.Contracts
 {
     public interface IResponse
     {
-        Exception exception { get; }
+        Exception Exception { get; }
 
-        string Message { get; }
-
-        bool IsError { get; }
+        ResponseStatus Status { get; }
     }
 }

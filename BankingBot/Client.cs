@@ -8,6 +8,7 @@ using BankingBot.ActionManagers.LoginManagers;
 using BankingBot.Models;
 using OpenQA.Selenium;
 using BankingBot.ActionManagers.AccountManagers;
+using BankingBot.Responses;
 
 namespace BankingBot
 {
@@ -38,11 +39,11 @@ namespace BankingBot
 
         #region Actions - Login Manager
 
-        public void Login(ILoginCredentials credentials)
+        public Response Login(ILoginCredentials credentials)
         {
-            _loginManager.Login(credentials);
-
             LoginCredentials = credentials;
+
+            return _loginManager.Login(credentials);
         }
 
         #endregion
