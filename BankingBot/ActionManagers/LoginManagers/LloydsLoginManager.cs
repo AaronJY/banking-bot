@@ -5,7 +5,7 @@ using BankingBot.Contracts;
 using BankingBot.LoginCredentials;
 using OpenQA.Selenium;
 
-namespace BankingBot.LoginManagers
+namespace BankingBot.ActionManagers.LoginManagers
 {
     [ProviderIdentifier(Enums.Provider.Lloyds)]
     public class LloydsLoginManager : IProviderLoginManager

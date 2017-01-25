@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BankingBot.Contracts;
-using BankingBot.LoginManagers;
+using BankingBot.ActionManagers.LoginManagers;
 using BankingBot.Models;
 using OpenQA.Selenium;
 
