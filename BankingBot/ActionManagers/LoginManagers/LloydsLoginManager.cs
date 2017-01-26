@@ -9,7 +9,7 @@ using BankingBot.Enums;
 
 namespace BankingBot.ActionManagers.LoginManagers
 {
-    [ProviderIdentifier(Enums.Provider.Lloyds)]
+    [ProviderIdentifier(Provider.Lloyds)]
     public class LloydsLoginManager : IProviderLoginManager
     {
         private static class Urls
