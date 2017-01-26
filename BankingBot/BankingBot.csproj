@@ -68,11 +68,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Responses\LoginResponse.cs" />
     <Compile Include="Responses\Response.cs" />
+    <Compile Include="ScriptManagement\ScriptManager.cs" />
+    <Compile Include="ScriptManagement\Scripts.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Content Include="ScriptManagement\Scripts\test.js" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
