@@ -19,9 +19,20 @@ namespace BankingBot.ScriptManagement
             _browserBot = browserBot;
         }
 
-        public T Execute<T>(string scriptPath, Dictionary<string, string> data = null)
+        public T Execute<T>(string scriptPath, Dictionary<string, string> data = null, string[] includedScripts = null)
         {
-            var scriptContent = File.ReadAllText(scriptPath);
+            var scriptContent = "";
+
+            if (includedScripts != null)
+            {
+                foreach (var script in includedScripts)
+                {
+                    var includedScriptContent = File.ReadAllText(script).Trim();
+                    scriptContent += includedScriptContent;
+                }
+            }
+
+            scriptContent += File.ReadAllText(scriptPath).Trim();
 
             if (data != null)
             {

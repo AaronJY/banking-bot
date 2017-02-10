@@ -1,3 +1,3 @@
 ﻿(function () {
-    var test = (/*{test}*/);
+    var netVersion = __$netVersion;
 })();
