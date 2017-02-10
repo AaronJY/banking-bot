@@ -62,7 +62,7 @@
     <Compile Include="Contracts\IScriptManager.cs" />
     <Compile Include="Enums\Provider.cs" />
     <Compile Include="Enums\ResponseStatus.cs" />
-    <Compile Include="Helpers\CardHelpers.cs" />
+    <Compile Include="Helpers\AccountHelpers.cs" />
     <Compile Include="LoginCredentials\BarclaysLoginCredentials.cs" />
     <Compile Include="LoginCredentials\LloydsLoginCredentials.cs" />
     <Compile Include="LoginCredentials\LoginCredentials.cs" />
