@@ -1,11 +1,9 @@
 ﻿var global = (function (module) {
 
-    function testFunction() {
-        console.log("test!");
-    }
-
-    return {
-        testFunction: testFunction
+    module.testFunction = function () {
+        console.log("Test function works!");
     };
+
+    return module;
 
 })(global || {});
