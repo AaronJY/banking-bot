@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="ActionManagers\AccountManagers\AccountManager.cs" />
     <Compile Include="ActionManagers\ActionManager.cs" />
+    <Compile Include="ActionManagers\LoginManagers\BarclaysLoginManager.cs" />
     <Compile Include="Attributes\ProviderIdentifier.cs" />
     <Compile Include="BrowserBot.cs" />
     <Compile Include="Client.cs" />
@@ -61,6 +62,8 @@
     <Compile Include="Contracts\IScriptManager.cs" />
     <Compile Include="Enums\Provider.cs" />
     <Compile Include="Enums\ResponseStatus.cs" />
+    <Compile Include="Helpers\CardHelpers.cs" />
+    <Compile Include="LoginCredentials\BarclaysLoginCredentials.cs" />
     <Compile Include="LoginCredentials\LloydsLoginCredentials.cs" />
     <Compile Include="LoginCredentials\LoginCredentials.cs" />
     <Compile Include="ActionManagers\LoginManagers\LloydsLoginManager.cs" />
