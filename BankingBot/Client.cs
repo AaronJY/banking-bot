@@ -9,6 +9,7 @@ using BankingBot.Models;
 using OpenQA.Selenium;
 using BankingBot.ActionManagers.AccountManagers;
 using BankingBot.Responses;
+using BankingBot.Enums;
 
 namespace BankingBot
 {
@@ -16,13 +17,14 @@ namespace BankingBot
         where T : IWebDriver
     {
         #region Dependencies
-        private readonly ILoginManager _loginManager;
-        private readonly IAccountManager _accountManager;
+        readonly ILoginManager loginManager;
+        readonly IAccountManager accountManager;
 
         protected readonly IBrowserBot BrowserBot;
         #endregion
 
         public ILoginCredentials LoginCredentials { get; private set; }
+        public Provider Provider { get; private set; }
 
         public bool IsLoggedIn
         {
@@ -33,8 +35,8 @@ namespace BankingBot
         {
             BrowserBot = new BrowserBot<T>();
 
-            _loginManager = new LoginManager(BrowserBot);
-            _accountManager = new AccountManager(BrowserBot);
+            loginManager = new LoginManager(BrowserBot);
+            accountManager = new AccountManager(BrowserBot);
         }
 
         #region Actions - Login Manager
@@ -42,8 +44,15 @@ namespace BankingBot
         public Response Login(ILoginCredentials credentials)
         {
             LoginCredentials = credentials;
+            Provider = credentials.GetProvider();
 
-            return _loginManager.Login(credentials);
+            var response = loginManager.Login(credentials);
+            if (response.Status == ResponseStatus.Success)
+            {
+                accountManager.Init(Provider);
+            }
+
+            return response;
         }
 
         #endregion
@@ -57,7 +66,7 @@ namespace BankingBot
 
         public IEnumerable<Account> GetAccounts()
         {
-            return _accountManager.GetAccounts();
+            return accountManager.GetAccounts();
         }
 
         #endregion

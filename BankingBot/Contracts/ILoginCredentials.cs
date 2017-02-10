@@ -4,6 +4,6 @@ namespace BankingBot.Contracts
 {
     public interface ILoginCredentials
     {
-        Provider? GetProvider();
+        Provider GetProvider();
     }
 }

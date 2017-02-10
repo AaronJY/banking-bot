@@ -4,8 +4,6 @@ using BankingBot.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BankingBot.ActionManagers
 {
@@ -18,22 +16,38 @@ namespace BankingBot.ActionManagers
             BrowserBot = browserBot;
         }
 
-        protected Type GetActionTypeFromInterface(object identifyingType, Type interfaceType)
+        protected ActionDetail GetActionDetailFromInterface(object identifyingType, Type interfaceType)
         {
             var provider = ProviderIdentifier.GetProviderFromType(identifyingType.GetType());
+            var type = GetTypeAssociatedWithProvider(provider, interfaceType);
 
-            // Get all types implementing the given interface
-            var typesImplementingInterface = AppDomain.CurrentDomain.GetAssemblies()
+            return new ActionDetail { Provider = provider, Type = type };
+        }
+
+        protected Type GetTypeFromInterface(Provider provider, Type interfaceType)
+        {
+            return GetTypeAssociatedWithProvider(provider, interfaceType);
+        }
+
+        private static IEnumerable<Type> GetTypesImplementingInterface(Type interfaceType)
+        {
+            return AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(s => s.GetTypes())
                 .Where(p =>
                     interfaceType.IsAssignableFrom(p) &&
-                    p != interfaceType);
+                    p != interfaceType).ToList();
+        }
 
+        private static Type GetTypeAssociatedWithProvider(Provider provider, Type interfaceType)
+        {
+            var typesImplementingInterface = GetTypesImplementingInterface(interfaceType);
             foreach (var type in typesImplementingInterface)
             {
                 var typeProvider = ProviderIdentifier.GetProviderFromType(type);
                 if (typeProvider == provider)
+                {
                     return type;
+                }
             }
 
             return null;

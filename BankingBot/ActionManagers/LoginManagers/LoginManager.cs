@@ -18,8 +18,8 @@ namespace BankingBot.ActionManagers.LoginManagers
             // TODO: THIS NEEDS TO BE MOVED
             var scriptManager = new ScriptManager(BrowserBot);
 
-            var provLoginManagerType = GetActionTypeFromInterface(credentials, typeof(IProviderLoginManager));
-            var provLoginManager = (IProviderLoginManager)Activator.CreateInstance(provLoginManagerType, BrowserBot, scriptManager);
+            var providerLoginManagerType = GetTypeFromInterface(credentials.GetProvider(), typeof(IProviderLoginManager));
+            var provLoginManager = (IProviderLoginManager)Activator.CreateInstance(providerLoginManagerType, BrowserBot, scriptManager);
 
             return provLoginManager.Login(credentials);
         }

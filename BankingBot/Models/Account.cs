@@ -13,5 +13,7 @@ namespace BankingBot.Models
         public string AccountNumber { get; set; }
 
         public string Name { get; set; }
+
+        public decimal Balance { get; set; }
     }
 }

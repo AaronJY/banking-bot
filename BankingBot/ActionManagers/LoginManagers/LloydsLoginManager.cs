@@ -8,19 +8,13 @@ using OpenQA.Selenium;
 using BankingBot.Responses;
 using BankingBot.Enums;
 using BankingBot.ScriptManagement;
+using BankingBot.Urls;
 
 namespace BankingBot.ActionManagers.LoginManagers
 {
     [ProviderIdentifier(Provider.Lloyds)]
     public class LloydsLoginManager : IProviderLoginManager
     {
-        private static class Urls
-        {
-            public const string Login = "https://online.lloydsbank.co.uk/personal/logon/login.jsp";
-            public const string MemorableInfo = "https://secure.lloydsbank.co.uk/personal/a/logon/entermemorableinformation.jsp";
-            public const string AccountOverview = "https://secure.lloydsbank.co.uk/personal/a/account_overview_personal/";
-        }
-
         private readonly IBrowserBot _browserBot;
         private readonly IScriptManager _scriptManager;
         
@@ -41,12 +35,12 @@ namespace BankingBot.ActionManagers.LoginManagers
             {
                 LoginStep1(lloydsCreds);
 
-                if (!_browserBot.WebDriver.Url.Contains(Urls.MemorableInfo))
+                if (!_browserBot.WebDriver.Url.Contains(LloydsUrls.MemorableInfo))
                     throw new InvalidOperationException("Invalid login credentials");
 
                 LoginStep2(lloydsCreds);
 
-                if (!_browserBot.WebDriver.Url.Contains(Urls.AccountOverview))
+                if (!_browserBot.WebDriver.Url.Contains(LloydsUrls.AccountOverview))
                     throw new InvalidOperationException("Invalid passphrase for account");
 
                 response.Status = ResponseStatus.Success;
@@ -62,7 +56,7 @@ namespace BankingBot.ActionManagers.LoginManagers
 
         private void LoginStep1(LloydsLoginCredentials credentials)
         {
-            _browserBot.WebDriver.Url = Urls.Login;
+            _browserBot.WebDriver.Url = LloydsUrls.Login;
             _browserBot.WebDriver.Navigate();
 
             _browserBot.WebDriver.FindElement(By.Id("frmLogin:strCustomerLogin_userID")).SendKeys(credentials.Username);
@@ -93,7 +87,7 @@ namespace BankingBot.ActionManagers.LoginManagers
 
         private int[] GetPassphraseIndexes()
         {
-            if (_browserBot.WebDriver.Url != Urls.MemorableInfo)
+            if (_browserBot.WebDriver.Url != LloydsUrls.MemorableInfo)
                 throw new InvalidOperationException("Must be on the memorable info page");
 
             var charIndexes = new int[3];
