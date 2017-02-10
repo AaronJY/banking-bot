@@ -37,15 +37,6 @@ namespace BankingBot.ActionManagers.LoginManagers
             var response = new Response();
             var lloydsCreds = (LloydsLoginCredentials)credentials;
 
-            var data = new Dictionary<string, string>
-            {
-                { "name", "aaron" },
-                { "age", "12" },
-                { "isOldEnough", "true" }
-            };
-
-            _scriptManager.Execute("scripts/test.js", data, ScriptBundles.Global);
-
             try
             {
                 LoginStep1(lloydsCreds);

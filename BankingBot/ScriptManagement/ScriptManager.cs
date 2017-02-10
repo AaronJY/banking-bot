@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BankingBot.Contracts;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Internal;
 
 namespace BankingBot.ScriptManagement
 {
@@ -30,6 +26,7 @@ namespace BankingBot.ScriptManagement
         {
             var script = GenerateScript(scriptPath, data, includedScripts);
             var executor = _browserBot.WebDriver as IJavaScriptExecutor;
+            executor.ExecuteScript(script);
         }
 
         private string GetIncludedScriptsCompilation(string currentCompliation, string[] scripts)
@@ -47,7 +44,7 @@ namespace BankingBot.ScriptManagement
 
         private string GetScriptContent(string scriptPath)
         {
-            return File.ReadAllText(scriptPath).Trim();
+            return File.ReadAllText(scriptPath).Trim() + Environment.NewLine;
         }
 
         private string GetScriptWithPopulatedData(string currentCompliation, Dictionary<string, string> data)
@@ -58,7 +55,7 @@ namespace BankingBot.ScriptManagement
                 foreach (var pair in data)
                 {
                     var placeholderText = string.Format(placeholderFormat, pair.Key);
-                    currentCompliation = currentCompliation.Replace(placeholderText, pair.Value);
+                    currentCompliation = currentCompliation.Replace(placeholderText, $"\"{pair.Value}\"");
                 }
             }
 
