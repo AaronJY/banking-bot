@@ -58,6 +58,7 @@
     <Compile Include="Contracts\ILoginManager.cs" />
     <Compile Include="Contracts\IProviderLoginManager.cs" />
     <Compile Include="Contracts\IResponse.cs" />
+    <Compile Include="Contracts\IScriptManager.cs" />
     <Compile Include="Enums\Provider.cs" />
     <Compile Include="Enums\ResponseStatus.cs" />
     <Compile Include="LoginCredentials\LloydsLoginCredentials.cs" />
@@ -70,7 +71,6 @@
     <Compile Include="Responses\Response.cs" />
     <Compile Include="ScriptManagement\ScriptBundles.cs" />
     <Compile Include="ScriptManagement\ScriptManager.cs" />
-    <Compile Include="ScriptManagement\Scripts.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

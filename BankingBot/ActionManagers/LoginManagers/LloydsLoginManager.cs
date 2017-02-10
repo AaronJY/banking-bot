@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using BankingBot.Attributes;
 using BankingBot.Contracts;
@@ -6,6 +7,7 @@ using BankingBot.LoginCredentials;
 using OpenQA.Selenium;
 using BankingBot.Responses;
 using BankingBot.Enums;
+using BankingBot.ScriptManagement;
 
 namespace BankingBot.ActionManagers.LoginManagers
 {
@@ -20,16 +22,30 @@ namespace BankingBot.ActionManagers.LoginManagers
         }
 
         private readonly IBrowserBot _browserBot;
+        private readonly IScriptManager _scriptManager;
         
-        public LloydsLoginManager(IBrowserBot browserBot)
+        public LloydsLoginManager(
+            IBrowserBot browserBot,
+            IScriptManager scriptManager)
         {
             _browserBot = browserBot;
+            _scriptManager = scriptManager;
         }
 
         public Response Login(ILoginCredentials credentials)
         {
             var response = new Response();
             var lloydsCreds = (LloydsLoginCredentials)credentials;
+
+            var data = new Dictionary<string, string>
+            {
+                { "name", "aaron" },
+                { "age", "12" },
+                { "isOldEnough", "true" }
+            };
+
+            _scriptManager.Execute("scripts/test.js", data, ScriptBundles.Global);
+
 
             try
             {
