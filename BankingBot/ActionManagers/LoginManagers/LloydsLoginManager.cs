@@ -46,7 +46,6 @@ namespace BankingBot.ActionManagers.LoginManagers
 
             _scriptManager.Execute("scripts/test.js", data, ScriptBundles.Global);
 
-
             try
             {
                 LoginStep1(lloydsCreds);
