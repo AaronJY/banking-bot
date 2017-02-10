@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BankingBot.Attributes;
+﻿using BankingBot.Attributes;
 using BankingBot.Contracts;
 using BankingBot.Enums;
 using BankingBot.LoginCredentials;
 using BankingBot.Responses;
+using BankingBot.Helpers;
 using OpenQA.Selenium;
+using System;
 
 namespace BankingBot.ActionManagers.LoginManagers
 {
@@ -51,15 +48,39 @@ namespace BankingBot.ActionManagers.LoginManagers
             {
                 _browserBot.WebDriver.FindElement(By.Id("card-radio")).Click();
 
-                var cardSplit = Helpers.CardHelpers.SplitCardNumber(barcCreds.CardNumber);
+                var cardSplit = AccountHelpers.SplitCardNumber(barcCreds.CardNumber);
                 for (var i = 0; i < 4; i++)
                 {
                     var fieldId = $"debitCardSet{i + 1}";
                     _browserBot.WebDriver.FindElement(By.Id(fieldId)).SendKeys(cardSplit[i]);
                 }
             }
+            // Chosen to use account details
+            else if (barcCreds.SortCode != null || barcCreds.AccountNumber != null)
+            {
+                _browserBot.WebDriver.FindElement(By.Id("account-radio")).Click();
 
+                var sortcodeSplit = AccountHelpers.SplitSortCode(barcCreds.SortCode);
+                for (var i = 0; i < 3; i++)
+                {
+                    var fieldId = $"sortCodeSet{i + 1}";
+                    _browserBot.WebDriver.FindElement(By.Id(fieldId)).SendKeys(sortcodeSplit[i]);
+                }
+            }
+            else
+            {
+                throw new InvalidOperationException("Could not determine login procedure from given properties.");
+            }
+
+            // Advance to stage 2
             _browserBot.WebDriver.FindElement(By.Id("forward")).Click();
+
+            _browserBot.WebDriver.FindElement(By.Id("passcode-radio")).Click();
+            _browserBot.WebDriver.FindElement(By.Id("passcode")).SendKeys(barcCreds.Passcode);
+
+            var characters = _browserBot.WebDriver.FindElement(By.ClassName("letter-select"))
+                .FindElements(By.TagName("strong"));
+
         }
     }
 }
