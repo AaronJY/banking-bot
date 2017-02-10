@@ -11,7 +11,7 @@ namespace BankingBot.Helpers
         public static string[] SplitCardNumber(string cardNumber)
         {
             if (cardNumber.Length != 16)
-                throw new ArgumentException("Card number was have a length of 16 characters.");
+                throw new ArgumentException("Card number must have a length of 16 characters.");
 
             return new[]
             {
@@ -19,6 +19,19 @@ namespace BankingBot.Helpers
                 cardNumber.Substring(4, 4),
                 cardNumber.Substring(8, 4),
                 cardNumber.Substring(12, 4)
+            };
+        }
+
+        public static string[] SplitSortCode(string sortcode)
+        {
+            if (sortcode.Length != 6)
+                throw new ArgumentException("Sortcode must have a length of 16 characters.");
+
+            return new[]
+            {
+                sortcode.Substring(0, 2),
+                sortcode.Substring(2, 2),
+                sortcode.Substring(4, 2)
             };
         }
     }
