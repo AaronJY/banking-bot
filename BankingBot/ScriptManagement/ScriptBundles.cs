@@ -2,10 +2,11 @@
 {
     public static class ScriptBundles
     {
-        public static string[] Global => new[]
+        public static string[] ProviderLogin => new[]
         {
-            "ScriptManagement/Scripts/jquery-3.1.1.min.js",
-            "ScriptManagement/Scripts/global.js"
+            "jquery-3.1.1.min.js",
+            "global.js",
+            "helpers/account-helpers.js"
         };
     }
 }

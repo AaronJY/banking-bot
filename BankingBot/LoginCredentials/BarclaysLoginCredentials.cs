@@ -11,7 +11,7 @@ namespace BankingBot.LoginCredentials
         public string CardNumber;
         public string SortCode;
         public string AccountNumber;
-        public string Password;
+        public string Passcode;
         public string MemorableWord;
     }
 }
