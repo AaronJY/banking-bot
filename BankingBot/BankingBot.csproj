@@ -77,8 +77,12 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="ScriptManagement\Scripts\global.js" />
-    <Content Include="ScriptManagement\Scripts\jquery-3.1.1.min.js" />
+    <Content Include="ScriptManagement\Scripts\global.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ScriptManagement\Scripts\jquery-3.1.1.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="ScriptManagement\Scripts\test.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

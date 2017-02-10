@@ -10,8 +10,8 @@ namespace BankingBot.ScriptManagement
     {
         public static string[] Global => new[]
         {
-            "jquery-3.1.1.min",
-            "global.js"
+            "scripts/jquery-3.1.1.min",
+            "scripts/global.js"
         };
     }
 }
