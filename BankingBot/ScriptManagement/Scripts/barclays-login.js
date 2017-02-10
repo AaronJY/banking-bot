@@ -16,7 +16,9 @@
         $("#membership-num").val(values.membershipNumber);
     }
     else if (values.cardNumber) {
-        $("#card-radio").click();
+
+        $("#debitCardStep1").val("Testing");
+        $("#debitCardStep1").hide();
 
         // Populate card number text boxes
         var cardNumberSplit = accountHelpers.splitCardNumber(values.cardNumber);
@@ -25,6 +27,7 @@
             $("#debitCardStep" + (i + 1)).val(cardNumberSplit[i]);
         }
 
-        alert("Working!");
+        $("#card-radio").click();
+
     }
 })();
