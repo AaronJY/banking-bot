@@ -49,6 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionManagers\AccountManagers\AccountManager.cs" />
+    <Compile Include="ActionManagers\AccountManagers\LloydsAccountManager.cs" />
+    <Compile Include="ActionManagers\ActionDetail.cs" />
     <Compile Include="ActionManagers\ActionManager.cs" />
     <Compile Include="ActionManagers\LoginManagers\BarclaysLoginManager.cs" />
     <Compile Include="Attributes\ProviderIdentifier.cs" />
@@ -59,6 +61,7 @@
     <Compile Include="Contracts\IClient.cs" />
     <Compile Include="Contracts\ILoginCredentials.cs" />
     <Compile Include="Contracts\ILoginManager.cs" />
+    <Compile Include="Contracts\IProviderAccountManager.cs" />
     <Compile Include="Contracts\IProviderLoginManager.cs" />
     <Compile Include="Contracts\IResponse.cs" />
     <Compile Include="Contracts\IScriptManager.cs" />
@@ -77,6 +80,7 @@
     <Compile Include="Responses\Response.cs" />
     <Compile Include="ScriptManagement\ScriptBundles.cs" />
     <Compile Include="ScriptManagement\ScriptManager.cs" />
+    <Compile Include="Urls\LloydsUrls.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -11,7 +11,7 @@ namespace BankingBot.LoginCredentials
 {
     public abstract class LoginCredentials : ILoginCredentials
     {
-        public Provider? GetProvider()
+        public Provider GetProvider()
         {
             return ProviderIdentifier.GetProviderFromType(GetType());
         }

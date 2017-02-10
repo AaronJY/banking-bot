@@ -12,7 +12,7 @@ namespace BankingBot.Attributes
             Provider = provider;
         }
 
-        public static Provider? GetProviderFromType(Type t)
+        public static Provider GetProviderFromType(Type t)
         {
             foreach (var attr in t.GetCustomAttributes(false))
             {
@@ -22,7 +22,7 @@ namespace BankingBot.Attributes
                 }
             }
 
-            return null;
+            throw new InvalidOperationException("Could not find associated provider for given type");
         }
     }
 }
