@@ -8,6 +8,8 @@ namespace BankingBot.ScriptManagement
 {
     public class ScriptManager : IScriptManager
     {
+        private static string _basePath => "ScriptManagement/Scripts/";
+        
         private readonly IBrowserBot _browserBot;
 
         public ScriptManager(IBrowserBot browserBot)
@@ -44,6 +46,7 @@ namespace BankingBot.ScriptManagement
 
         private string GetScriptContent(string scriptPath)
         {
+            scriptPath = GetPath(scriptPath);
             return File.ReadAllText(scriptPath).Trim() + Environment.NewLine;
         }
 
@@ -69,6 +72,11 @@ namespace BankingBot.ScriptManagement
             scriptContent = GetScriptWithPopulatedData(scriptContent, data);
 
             return scriptContent;
+        }
+
+        private string GetPath(string scriptPath)
+        {
+            return _basePath + scriptPath;
         }
     }
 }
