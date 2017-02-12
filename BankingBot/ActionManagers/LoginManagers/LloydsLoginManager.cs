@@ -9,6 +9,7 @@ using BankingBot.Responses;
 using BankingBot.Enums;
 using BankingBot.ScriptManagement;
 using BankingBot.Urls;
+using BankingBot.Exceptions;
 
 namespace BankingBot.ActionManagers.LoginManagers
 {
@@ -36,12 +37,12 @@ namespace BankingBot.ActionManagers.LoginManagers
                 LoginStep1(lloydsCreds);
 
                 if (!_browserBot.WebDriver.Url.Contains(LloydsUrls.MemorableInfo))
-                    throw new InvalidOperationException("Invalid login credentials");
+                    throw new InvalidCredentialsException("Invalid login credentials");
 
                 LoginStep2(lloydsCreds);
 
                 if (!_browserBot.WebDriver.Url.Contains(LloydsUrls.AccountOverview))
-                    throw new InvalidOperationException("Invalid passphrase for account");
+                    throw new InvalidCredentialsException("Invalid passphrase for account");
 
                 response.Status = ResponseStatus.Success;
             }
@@ -71,7 +72,7 @@ namespace BankingBot.ActionManagers.LoginManagers
 
             var maxPassphraseLength = passphraseIndexes[2];
             if (credentials.Passphrase.Length < maxPassphraseLength)
-                throw new IndexOutOfRangeException("Paspshrase is too short");
+                throw new InvalidCredentialsException("Passphrase is too short");
 
             _browserBot.WebDriver.FindElement(By.Id(GetPassphraseDdlId(1))).SendKeys(
                 credentials.Passphrase[passphraseIndexes[0]].ToString());
