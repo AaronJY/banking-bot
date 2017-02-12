@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BankingBot.Contracts;
 using BankingBot.ActionManagers.LoginManagers;
 using BankingBot.Models;
@@ -13,7 +10,7 @@ using BankingBot.Enums;
 
 namespace BankingBot
 {
-    public class Client <T> : IClient
+    public class BankingClient <T> : IClient
         where T : IWebDriver
     {
         #region Dependencies
@@ -31,7 +28,7 @@ namespace BankingBot
             get { return LoginCredentials != null; }
         }
 
-        public Client()
+        public BankingClient()
         {
             BrowserBot = new BrowserBot<T>();
 
