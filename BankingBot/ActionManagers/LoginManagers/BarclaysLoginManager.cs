@@ -3,10 +3,6 @@ using BankingBot.Contracts;
 using BankingBot.Enums;
 using BankingBot.LoginCredentials;
 using BankingBot.Responses;
-using BankingBot.Helpers;
-using BankingBot.Extensions;
-using OpenQA.Selenium;
-using System;
 using System.Collections.Generic;
 using BankingBot.ScriptManagement;
 
