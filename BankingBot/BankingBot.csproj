@@ -55,7 +55,7 @@
     <Compile Include="ActionManagers\LoginManagers\BarclaysLoginManager.cs" />
     <Compile Include="Attributes\ProviderIdentifier.cs" />
     <Compile Include="BrowserBot.cs" />
-    <Compile Include="Client.cs" />
+    <Compile Include="BankingClient.cs" />
     <Compile Include="Contracts\IAccountManager.cs" />
     <Compile Include="Contracts\IBrowserBot.cs" />
     <Compile Include="Contracts\IClient.cs" />
