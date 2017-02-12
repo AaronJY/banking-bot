@@ -39,8 +39,20 @@ namespace BankingBot.ActionManagers.AccountManagers
                 account.AccountNumber = container.FindElement(By.ClassName("account-number")).Text;
                 account.SortCode = container.FindElement(By.CssSelector("dd[aria-label='12 34 56']")).Text;
 
-                var balance = 0m;
-                var balanceTxt = container.FindElement(By.ClassName("balance")).FindElement(By.TagName("span")).Text;
+                string balanceTxt;
+                decimal balance;
+
+                // Split logic for getting Current Account AVAILABLE balance
+                // or a normal account's balance
+                try
+                {
+                    balanceTxt = container.FindElement(By.ClassName("available-balance")).Text;
+                }
+                catch (NoSuchElementException)
+                {
+                    balanceTxt = container.FindElement(By.ClassName("balance")).FindElement(By.TagName("span")).Text;
+                }
+
                 decimal.TryParse(balanceTxt, NumberStyles.Currency, new CultureInfo("en-GB"), out balance);
                 account.Balance = balance;
 
