@@ -4,6 +4,6 @@ namespace BankingBot.Contracts
 {
     public interface IProviderLoginManager
     {
-        Response Login(ILoginCredentials credentials);
+        void Login(ILoginCredentials credentials);
     }
 }

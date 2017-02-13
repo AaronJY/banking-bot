@@ -36,18 +36,13 @@ namespace BankingBot
 
         #region Actions - Login Manager
 
-        public Response Login(ILoginCredentials credentials)
+        public void Login(ILoginCredentials credentials)
         {
             LoginCredentials = credentials;
             Provider = credentials.GetProvider();
 
-            var response = loginManager.Login(credentials);
-            if (response.Status == ResponseStatus.Success)
-            {
-                accountManager.Init(Provider);
-            }
-
-            return response;
+            loginManager.Login(credentials);
+            accountManager.Init(Provider);
         }
 
         #endregion
