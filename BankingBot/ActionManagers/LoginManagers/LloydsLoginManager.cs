@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using BankingBot.Attributes;
 using BankingBot.Contracts;
 using BankingBot.LoginCredentials;
 using OpenQA.Selenium;
-using BankingBot.Responses;
 using BankingBot.Enums;
-using BankingBot.ScriptManagement;
 using BankingBot.Urls;
 using BankingBot.Exceptions;
 

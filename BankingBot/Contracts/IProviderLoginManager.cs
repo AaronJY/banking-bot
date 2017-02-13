@@ -1,6 +1,4 @@
-﻿using BankingBot.Responses;
-
-namespace BankingBot.Contracts
+﻿namespace BankingBot.Contracts
 {
     public interface IProviderLoginManager
     {

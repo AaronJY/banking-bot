@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Linq;
-using BankingBot.Attributes;
 using BankingBot.Contracts;
-using BankingBot.Responses;
 using BankingBot.ScriptManagement;
 
 namespace BankingBot.ActionManagers.LoginManagers

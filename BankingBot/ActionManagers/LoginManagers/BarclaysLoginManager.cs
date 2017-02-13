@@ -2,7 +2,6 @@
 using BankingBot.Contracts;
 using BankingBot.Enums;
 using BankingBot.LoginCredentials;
-using BankingBot.Responses;
 using System.Collections.Generic;
 using BankingBot.ScriptManagement;
 

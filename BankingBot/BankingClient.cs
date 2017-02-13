@@ -5,7 +5,6 @@ using BankingBot.ActionManagers.LoginManagers;
 using BankingBot.Models;
 using OpenQA.Selenium;
 using BankingBot.ActionManagers.AccountManagers;
-using BankingBot.Responses;
 using BankingBot.Enums;
 
 namespace BankingBot

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BankingBot.Attributes;
-using BankingBot.Contracts;
+﻿using BankingBot.Attributes;
 
 namespace BankingBot.LoginCredentials
 {
