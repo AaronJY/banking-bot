@@ -69,6 +69,7 @@
     <Compile Include="Enums\ResponseStatus.cs" />
     <Compile Include="Enums\TransactionType.cs" />
     <Compile Include="Exceptions\InvalidCredentialsException.cs" />
+    <Compile Include="Extensions\IWebElementExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Helpers\AccountHelpers.cs" />
     <Compile Include="LoginCredentials\BarclaysLoginCredentials.cs" />
