@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using BankingBot.Attributes;
 using BankingBot.Contracts;
 using BankingBot.LoginCredentials;
 using OpenQA.Selenium;
-using BankingBot.Responses;
 using BankingBot.Enums;
-using BankingBot.ScriptManagement;
 using BankingBot.Urls;
 using BankingBot.Exceptions;
 
@@ -16,8 +13,10 @@ namespace BankingBot.ActionManagers.LoginManagers
     [ProviderIdentifier(Provider.Lloyds)]
     public class LloydsLoginManager : IProviderLoginManager
     {
-        private readonly IBrowserBot _browserBot;
-        private readonly IScriptManager _scriptManager;
+        readonly IBrowserBot _browserBot;
+        readonly IScriptManager _scriptManager;
+
+        private LloydsLoginCredentials _credentials;
         
         public LloydsLoginManager(
             IBrowserBot browserBot,
@@ -27,63 +26,49 @@ namespace BankingBot.ActionManagers.LoginManagers
             _scriptManager = scriptManager;
         }
 
-        public Response Login(ILoginCredentials credentials)
+        public void Login(ILoginCredentials credentials)
         {
-            var response = new Response();
-            var lloydsCreds = (LloydsLoginCredentials)credentials;
+            _credentials = (LloydsLoginCredentials)credentials;
 
-            try
-            {
-                LoginStep1(lloydsCreds);
-
-                if (!_browserBot.WebDriver.Url.Contains(LloydsUrls.MemorableInfo))
-                    throw new InvalidCredentialsException("Invalid login credentials");
-
-                LoginStep2(lloydsCreds);
-
-                if (!_browserBot.WebDriver.Url.Contains(LloydsUrls.AccountOverview))
-                    throw new InvalidCredentialsException("Invalid passphrase for account");
-
-                response.Status = ResponseStatus.Success;
-            }
-            catch (Exception ex)
-            {
-                response.Exception = ex;
-                response.Status = ResponseStatus.Error;
-            }
-
-            return response;
+            LoginStep1();
+            LoginStep2();
         }
 
-        private void LoginStep1(LloydsLoginCredentials credentials)
+        private void LoginStep1()
         {
             _browserBot.WebDriver.Url = LloydsUrls.Login;
             _browserBot.WebDriver.Navigate();
 
-            _browserBot.WebDriver.FindElement(By.Id("frmLogin:strCustomerLogin_userID")).SendKeys(credentials.Username);
-            _browserBot.WebDriver.FindElement(By.Id("frmLogin:strCustomerLogin_pwd")).SendKeys(credentials.Password);
+            _browserBot.WebDriver.FindElement(By.Id("frmLogin:strCustomerLogin_userID")).SendKeys(_credentials.Username);
+            _browserBot.WebDriver.FindElement(By.Id("frmLogin:strCustomerLogin_pwd")).SendKeys(_credentials.Password);
 
             _browserBot.WebDriver.FindElement(By.Id("frmLogin:btnLogin2")).Click();
+
+            if (!_browserBot.WebDriver.Url.Contains(LloydsUrls.MemorableInfo))
+                throw new InvalidCredentialsException("Invalid login credentials");
         }
 
-        private void LoginStep2(LloydsLoginCredentials credentials)
+        private void LoginStep2()
         {
             var passphraseIndexes = GetPassphraseIndexes();
 
             var maxPassphraseLength = passphraseIndexes[2];
-            if (credentials.Passphrase.Length < maxPassphraseLength)
+            if (_credentials.Passphrase.Length < maxPassphraseLength)
                 throw new InvalidCredentialsException("Passphrase is too short");
 
             _browserBot.WebDriver.FindElement(By.Id(GetPassphraseDdlId(1))).SendKeys(
-                credentials.Passphrase[passphraseIndexes[0]].ToString());
+                _credentials.Passphrase[passphraseIndexes[0]].ToString());
 
             _browserBot.WebDriver.FindElement(By.Id(GetPassphraseDdlId(2))).SendKeys(
-                credentials.Passphrase[passphraseIndexes[1]].ToString());
+                _credentials.Passphrase[passphraseIndexes[1]].ToString());
 
             _browserBot.WebDriver.FindElement(By.Id(GetPassphraseDdlId(3))).SendKeys(
-                credentials.Passphrase[passphraseIndexes[2]].ToString());
+                _credentials.Passphrase[passphraseIndexes[2]].ToString());
 
             _browserBot.WebDriver.FindElement(By.Id("frmentermemorableinformation1:btnContinue")).Click();
+
+            if (!_browserBot.WebDriver.Url.Contains(LloydsUrls.AccountOverview))
+                throw new InvalidCredentialsException("Invalid passphrase for account");
         }
 
         private int[] GetPassphraseIndexes()

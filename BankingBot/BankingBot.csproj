@@ -77,8 +77,6 @@
     <Compile Include="ActionManagers\LoginManagers\LoginManager.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Responses\LoginResponse.cs" />
-    <Compile Include="Responses\Response.cs" />
     <Compile Include="ScriptManagement\ScriptBundles.cs" />
     <Compile Include="ScriptManagement\ScriptManager.cs" />
     <Compile Include="Urls\LloydsUrls.cs" />

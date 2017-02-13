@@ -2,7 +2,6 @@
 using BankingBot.Contracts;
 using BankingBot.Enums;
 using BankingBot.LoginCredentials;
-using BankingBot.Responses;
 using System.Collections.Generic;
 using BankingBot.ScriptManagement;
 
@@ -28,7 +27,7 @@ namespace BankingBot.ActionManagers.LoginManagers
             this.scriptManager = scriptManager;
         }
 
-        public Response Login(ILoginCredentials credentials)
+        public void Login(ILoginCredentials credentials)
         {
             _credentials = credentials as BarclaysLoginCredentials;
 
@@ -100,11 +99,6 @@ namespace BankingBot.ActionManagers.LoginManagers
             };
 
             scriptManager.Execute("barclays-login.js", scriptData, ScriptBundles.ProviderLogin);
-
-            return new Response
-            {
-                Status = ResponseStatus.Success
-            };
         }
     }
 }

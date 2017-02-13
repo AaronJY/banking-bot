@@ -1,9 +1,7 @@
-﻿using BankingBot.Responses;
-
-namespace BankingBot.Contracts
+﻿namespace BankingBot.Contracts
 {
     public interface ILoginManager
     {
-        Response Login(ILoginCredentials credentials);
+        void Login(ILoginCredentials credentials);
     }
 }

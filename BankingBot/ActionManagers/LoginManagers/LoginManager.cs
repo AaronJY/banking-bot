@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Linq;
-using BankingBot.Attributes;
 using BankingBot.Contracts;
-using BankingBot.Responses;
 using BankingBot.ScriptManagement;
 
 namespace BankingBot.ActionManagers.LoginManagers
@@ -13,7 +10,7 @@ namespace BankingBot.ActionManagers.LoginManagers
             : base(browserBot)
         { }
 
-        public Response Login(ILoginCredentials credentials)
+        public void Login(ILoginCredentials credentials)
         {
             // TODO: THIS NEEDS TO BE MOVED
             var scriptManager = new ScriptManager(BrowserBot);
@@ -21,7 +18,7 @@ namespace BankingBot.ActionManagers.LoginManagers
             var providerLoginManagerType = GetTypeFromInterface(credentials.GetProvider(), typeof(IProviderLoginManager));
             var provLoginManager = (IProviderLoginManager)Activator.CreateInstance(providerLoginManagerType, BrowserBot, scriptManager);
 
-            return provLoginManager.Login(credentials);
+            provLoginManager.Login(credentials);
         }
     }
 }
