@@ -67,7 +67,9 @@
     <Compile Include="Contracts\IScriptManager.cs" />
     <Compile Include="Enums\Provider.cs" />
     <Compile Include="Enums\ResponseStatus.cs" />
+    <Compile Include="Enums\TransactionType.cs" />
     <Compile Include="Exceptions\InvalidCredentialsException.cs" />
+    <Compile Include="Extensions\IWebElementExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Helpers\AccountHelpers.cs" />
     <Compile Include="LoginCredentials\BarclaysLoginCredentials.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="ActionManagers\LoginManagers\LloydsLoginManager.cs" />
     <Compile Include="ActionManagers\LoginManagers\LoginManager.cs" />
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\Transaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScriptManagement\ScriptBundles.cs" />
     <Compile Include="ScriptManagement\ScriptManager.cs" />

@@ -1,6 +1,7 @@
 ﻿using BankingBot.Attributes;
 using BankingBot.Contracts;
 using BankingBot.Enums;
+using BankingBot.Extensions;
 using BankingBot.Models;
 using BankingBot.Urls;
 using OpenQA.Selenium;
@@ -18,6 +19,16 @@ namespace BankingBot.ActionManagers.AccountManagers
     {
         readonly IBrowserBot browserBot;
         readonly IScriptManager scriptManager;
+
+        private enum TransactionTableColumn
+        {
+            Date = 0,
+            Description = 1,
+            Type = 2,
+            In = 3,
+            Out = 4,
+            Balance = 5
+        }
 
         public LloydsAccountManager(
             IBrowserBot browserBot,
@@ -61,5 +72,70 @@ namespace BankingBot.ActionManagers.AccountManagers
 
             return accounts;
         }
+
+        public IEnumerable<Transaction> GetTransactions(string accountNumber)
+        {
+            var transactions = new List<Transaction>();
+
+            var ajaxIdentifier = GetAjaxIdentifierForAccountNumber(accountNumber);
+            var accountDetailsUrl = $"{LloydsUrls.AccountDetails}/{ajaxIdentifier}";
+            browserBot.WebDriver.Url = accountDetailsUrl;
+
+            var transactionsTableBody = browserBot.WebDriver
+                .FindElement(By.ClassName("statements-wrap"))
+                .FindElement(By.ClassName("cwa-tbody"));
+
+            var transactionRows = transactionsTableBody.FindElements(By.CssSelector("tr[aria-expanded='false']"));
+            foreach (var row in transactionRows)
+            {
+                var rowCells = row.FindElements(By.TagName("td"));
+
+                var transaction = new Transaction
+                {
+                    Date = DateTime.Parse(rowCells[(int)TransactionTableColumn.Date].Text),
+                    IsPending = false,
+                    Description = rowCells[(int)TransactionTableColumn.Description].Text
+                };
+
+                var amountIn = rowCells[(int)TransactionTableColumn.In].Text;
+                var amountOut = rowCells[(int)TransactionTableColumn.Out].Text;
+                if (amountIn != "")
+                {
+                    transaction.Amount = decimal.Parse(amountIn);
+                }
+                else
+                {
+                    transaction.Amount = -(decimal.Parse(amountOut));
+                }
+
+                transactions.Add(transaction);
+            }
+
+            return transactions;
+        }
+
+        private string GetAjaxIdentifierForAccountNumber(string accountNumber)
+        {
+            var currentUrl = browserBot.WebDriver.Url;
+
+            browserBot.WebDriver.Url = LloydsUrls.AccountOverview;
+
+            IWebElement accountContainer = null;
+            var accountContainers = browserBot.WebDriver.FindElements(By.ClassName("des-m-sat-xx-account-tile"));
+            foreach (var cnt in accountContainers)
+            {
+                if (cnt.HasElement(By.ClassName("account-number")))
+                {
+                    accountContainer = cnt;
+                    break;
+                }
+            }
+
+            if (accountContainer == null)
+                throw new InvalidOperationException($"Could not find account with account number '{accountNumber}'");
+
+            return accountContainer.GetAttribute("data-ajax-identifier");
+        }
+
     }
 }

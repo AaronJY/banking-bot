@@ -7,6 +7,9 @@ namespace BankingBot.Contracts
     public interface IAccountManager
     {
         void Init(Provider provider);
+
         IEnumerable<Account> GetAccounts();
+
+        IEnumerable<Transaction> GetTransactions(string accountNumber);
     }
 }

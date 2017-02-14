@@ -58,6 +58,11 @@ namespace BankingBot
             return accountManager.GetAccounts();
         }
 
+        public IEnumerable<Transaction> GetTransactions(string accountNumber)
+        {
+            return accountManager.GetTransactions(accountNumber);
+        }
+
         #endregion
 
         #region IDisposable Support
@@ -93,6 +98,8 @@ namespace BankingBot
             // TODO: uncomment the following line if the finalizer is overridden above.
             // GC.SuppressFinalize(this);
         }
+
+        
         #endregion
 
     }

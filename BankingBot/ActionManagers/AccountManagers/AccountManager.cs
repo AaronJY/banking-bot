@@ -27,9 +27,18 @@ namespace BankingBot.ActionManagers.AccountManagers
             providerAccountManager = (IProviderAccountManager)Activator.CreateInstance(providerAccountManagerType, BrowserBot, scriptManager);
         }
 
+        #region Behaviours
+
         public IEnumerable<Account> GetAccounts()
         {
             return providerAccountManager.GetAccounts();
         }
+
+        public IEnumerable<Transaction> GetTransactions(string accountNumber)
+        {
+            return providerAccountManager.GetTransactions(accountNumber);
+        }
+
+        #endregion
     }
 }

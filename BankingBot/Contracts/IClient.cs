@@ -10,5 +10,7 @@ namespace BankingBot.Contracts
         decimal GetBalance();
 
         IEnumerable<Account> GetAccounts();
+
+        IEnumerable<Transaction> GetTransactions(string accountNumber);
     }
 }
