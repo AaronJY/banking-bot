@@ -12,4 +12,4 @@ The following is a list of currently supported providers (online banking portals
 
 * Lloyds (https://www.lloydsbank.com)
 * Barclays (http://www.barclays.co.uk/PersonalBanking)
-* CapitalOne(in development...)
+* CapitalOne (in development...)
