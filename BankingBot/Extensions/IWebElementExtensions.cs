@@ -8,8 +8,7 @@ namespace BankingBot.Extensions
         {
             try
             {
-                element.FindElement(by);
-                return true;
+                return element.FindElement(by) != null;
             }
             catch (NoSuchElementException)
             {

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BankingBot.Enums
+﻿namespace BankingBot.Enums
 {
+    // TODO: "WHAT DO ALL THESE MEAN!?"
+    // Make it more obvious what each flag represents
     public enum TransactionType
     {
         BGC,
