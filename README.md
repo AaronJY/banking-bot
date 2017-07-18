@@ -1,4 +1,4 @@
-# Banking Bot #
+# Banking Bot (banking-bot) #
 
 Banking Bot is a .NET API used to programmatically login and collect data from online banking portals.
 
@@ -12,3 +12,4 @@ The following is a list of currently supported providers (online banking portals
 
 * Lloyds (https://www.lloydsbank.com)
 * Barclays (http://www.barclays.co.uk/PersonalBanking)
+* CapitalOne(in development...)
