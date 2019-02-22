@@ -12,3 +12,7 @@ BankingBot/bin/
 BankingBot/obj/Debug/
 
 Client/obj/Debug/
+
+\.vs/BankingBot/v15/Server/sqlite3/
+
+\.vs/BankingBot/v15/\.suo
